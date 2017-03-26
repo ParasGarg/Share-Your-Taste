@@ -47,14 +47,14 @@ module.exports = needsListControllers = {
             return needsListCollection.find({ "dropAddress.zipCode": zipCode }, { _id:1, title:1, dropAddress:1 }).toArray()
                 .then((searchedItemsList) => {
 
-                    let mapVal = [];
+                    let mapMarkers = [];
 
                     for(var i = 0; i < searchedItemsList.length; i++) {
                         var shareURL = "http://localhost:3000/needs/id/" + searchedItemsList[i]._id;
                         var shareLocStr = searchedItemsList[i].dropAddress.street + ",+" + searchedItemsList[i].dropAddress.city + ",+" + searchedItemsList[i].dropAddress.state;
                         var shareLoc = shareLocStr.split(' ').join('+');
                         
-                        mapVal[i] = {
+                        mapMarkers[i] = {
                             title: searchedItemsList[i].title,
                             loc: shareLoc,
                             url : shareURL
@@ -65,7 +65,7 @@ module.exports = needsListControllers = {
                         return Promise.reject(`No share of ${zipCode} category is found in records.`);
                     }
 
-                    return mapVal;
+                    return mapMarkers;
                 });
         });
     },

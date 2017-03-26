@@ -31,9 +31,9 @@ router.get("/category/:category", (req, res) => {
 });
 
 // route for getting share item by zip
-router.get("/maps/:zip", (req, res) => {
-    needsController.getShareByZip(req.params.zip).then((shareItems) => {
-        res.json(shareItems);
+router.get("/markers/:zip", (req, res) => {
+    needsController.getShareByZip(req.params.zip).then((markerItems) => {
+        res.json(markerItems);
     }).catch((err) => {
         res.status(404).json({ error: err });
     });

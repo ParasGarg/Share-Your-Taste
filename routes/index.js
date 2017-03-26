@@ -1,11 +1,13 @@
 const sharesRoutes = require("./shares");
 const needsRoutes = require("./needs");
+const usersRoutes = require("./users");
 
 const constructorMethod = (app) => {
     // routing
     app.use("/api/share", sharesRoutes);
     app.use("/api/needs", needsRoutes);
-
+    app.use("/users", usersRoutes);
+    
     // root page checking
     app.use("/$/", (req, res) => {
         res.status(200).sendFile(__dirname + '/ui/index.html');

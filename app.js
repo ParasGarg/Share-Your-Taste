@@ -20,6 +20,10 @@ app.get('/share/', function (req, res) {
     res.sendFile(__dirname + '/ui/share/share-item.html');
 })
 
+app.get('/error/', function (req, res) {
+    res.sendFile(__dirname + '/ui/error.html');
+})
+
 app.post('/share', function (req, res) {
     console.log(req);
 })

@@ -1,0 +1,31 @@
+#big-front {
+    
+    background-image: url("../img/cover.jpg");
+    background-size: cover;
+    color: black;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    height: 660px;
+}
+
+#big-pages {
+    background-image: url("../img/jetpack-sharing-2016.png");
+    background-repeat: repeat;
+    padding: 0.5rem 2rem;
+}
+
+#needs-list li{
+    margin-bottom: 10px;
+}
+
+.img-fluid {
+    max-height: 400px;
+}
+
+.hide-img {
+    display: none;
+}
+
+.hide-element {
+    display: none;
+}

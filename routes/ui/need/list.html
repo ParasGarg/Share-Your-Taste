@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Share Your Taste</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        width: 90%;
+        height: 90%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+        <div class="container">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			    	<span class="navbar-toggler-icon"></span>
+			  	</button>
+            <a class="navbar-brand" href="/">Share Your Taste</a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">SignUp/SignIn</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div id="big-pages" class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-3">What we offer</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div id="map"></div>
+            <script type="text/javascript">
+
+                var marker_i = [{ title: "Chicken Biryani", loc: '138+Zabriskie+Street,+Jersey+City,+NJ', url: 'google.com' }, { title: "Sweatshirts", loc: '268+First+Street,+Hoboken,+NJ', url: 'MapTest.txt' }, { title: "Grains", loc: '357+Fifth+Street,+Hoboken,+NJ', url: 'geolocation-marker.js' }];
+                var marker_i_len = marker_i.length;
+                var init_pos = { lat: 40.708517, lng: -74.007889 };
+                function initMap() {
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        center: init_pos,
+                        zoom: 10
+                    });
+                    var marker = new google.maps.Marker({
+                        position: init_pos,
+                        map: map,
+                        title: 'You are here!'
+
+                    });
+                    var infoWindow = new google.maps.InfoWindow({ map: map });
+
+                    // Try HTML5 geolocation.
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                            var pos = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude
+                            };
+                            pos = new google.maps.LatLng(pos);
+                            map.setZoom(15);
+                            map.setCenter(pos);
+                            infoWindow.setPosition(pos);
+                            infoWindow.setContent('You are here!');
+                            marker.setPosition(pos);
+
+                            for (i = 0; i < marker_i_len; i++) {
+                                let title = marker_i[i].title;
+                                let url = marker_i[i].url;
+                                var json_address = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + marker_i[i].loc + '&key=AIzaSyC8kjTFLhhsErF9tOipUEV1oIk392VCIjw';
+
+                                $.getJSON(json_address, function (data) {
+
+                                    u_lat = data.results[0].geometry.location.lat;
+                                    u_lng = data.results[0].geometry.location.lng;
+                                    u_pos = new google.maps.LatLng({ lat: u_lat, lng: u_lng });
+
+                                    if (google.maps.geometry.spherical.computeDistanceBetween(pos, u_pos) < 3000) {
+                                        var u_marker = new google.maps.Marker({
+                                            position: u_pos,
+                                            map: map,
+                                            title: title
+                                        });
+
+                                        google.maps.event.addListener(u_marker, 'click', (function (u_marker, i) {
+                                            return function () {
+                                                window.open(url);
+                                            }
+                                        })(u_marker, i));
+                                    }
+
+                                });
+                            }
+
+                        }, function () {
+                            handleLocationError(true, infoWindow, map.getCenter());
+                        });
+                    } else {
+                        // Browser doesn't support Geolocation
+                        handleLocationError(false, infoWindow, map.getCenter());
+                    }
+                }
+
+                function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+                }
+
+            </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8kjTFLhhsErF9tOipUEV1oIk392VCIjw&libraries=geometry&callback=initMap"
+    async defer></script>
+</div>
+</div>
+<div class="row">
+    <div class="col">
+        <ul class="list-group">
+            <li class="list-group-item justify-content-between">
+                All
+                <span class="badge badge-default badge-pill">14</span>
+            </li>
+            <li class="list-group-item justify-content-between">
+                Foods
+                <span class="badge badge-default badge-pill">2</span>
+            </li>
+            <li class="list-group-item justify-content-between">
+                Clothes
+                <span class="badge badge-default badge-pill">1</span>
+            </li>
+            <li class="list-group-item justify-content-between">
+                Books
+                <span class="badge badge-default badge-pill">1</span>
+            </li>
+        </ul>
+    </div>
+    <div class="col-9">
+        <ul id="needs-list" class="list-unstyled">
+            <!-- <li>
+                            <div class="card">
+                                <div class="card-block">
+                                    <a href="/needs/146264"><h4 class="card-title">Fried chicken to share</h4></a>
+                                    <h6 class="card-subtitle mb-2 text-muted">I have alot of food to share if you want some :)</h6>
+                                </div>
+                            </div>
+                        </li> -->
+        </ul>
+    </div>
+</div>
+</div>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+    crossorigin="anonymous"></script>
+<script src="/public/js/needs-list.js"></script>
+</body>
+
+</html>

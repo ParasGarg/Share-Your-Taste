@@ -9,10 +9,18 @@
     padding: 0.5rem 2rem;
 }
 
-#need-list ul li{
+#needs-list li{
     margin-bottom: 10px;
 }
 
 .img-fluid {
     max-height: 400px;
+}
+
+.hide-img {
+    display: none;
+}
+
+.hide-element {
+    display: none;
 }

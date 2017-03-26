@@ -20,6 +20,8 @@ $(document).ready(function() {
 
     }
 
+
+
     function createItem(obj) {
         let title = $('<div>').attr("class","card-title").text(obj.title);
         let link = $('<a>').attr("href","/needs/" + obj._id).append(title);

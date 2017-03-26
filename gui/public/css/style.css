@@ -1,0 +1,18 @@
+#big-front {
+    background-image: url("../img/jetpack-sharing-2016.png");
+    background-repeat: repeat;
+}
+
+#big-pages {
+    background-image: url("../img/jetpack-sharing-2016.png");
+    background-repeat: repeat;
+    padding: 0.5rem 2rem;
+}
+
+#need-list ul li{
+    margin-bottom: 10px;
+}
+
+.img-fluid {
+    max-height: 400px;
+}

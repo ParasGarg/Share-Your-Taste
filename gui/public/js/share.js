@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	const listCategory = $("#list-category");
+	const listCategory = $(".lliisstt");
 	const foodDiv = $("#food-info");
 	const bookDiv = $("#book-info");
 	const clothDiv = $("#cloth-info");
@@ -31,21 +31,65 @@ $(document).ready(function() {
 		clothDiv.attr("class","hide-element");
 	}
 
-
-
-
-
 	$("#share-form").submit(function(e) {
 		e.preventDefault();
-		var url = "/api/share";
+
+		// form
+		const titleE = $("#title");
+		const descriptionE = $("#description");
+		const imagesE = $("#images");
+		const itemStatusE = $("#itemStatus");
+		const dropStatusE = $("#dropStatus");
+		const dropStreetE = $("#dropStreet");
+		const dropAptE = $("#dropApt");
+		const dropCityE = $("#dropCity");
+		const dropStateE = $("#dropState");
+		const dropZipE = $("#dropZip");
+		const itemCategoryE = $("#itemCategory");
+		const foodCuisineE = $("#foodCuisine");
+		const foodCookDateE = $("#foodCookDate");
+		const foodBestBeforeDateE = $("#foodBestBeforeDate");
+		const clothGenderE = $("#clothGender");
+		const clothSizeE = $("#clothSize");
+		const itemCategory = $("#itemCategory");
+
+		itemData = {
+			title: titleE.val(),
+			description: descriptionE.val(),
+			images: imagesE.val(),
+			dropStatus: dropStatusE.val(),
+			itemStatus: itemStatusE.val(),
+			dropStreet: dropStreetE.val(),
+			dropApt: dropAptE.val(),
+			dropCity: dropCityE.val(),
+			dropState: dropStateE.val(),
+			dropZip: dropZipE.val(),
+			itemCategory: 'book',
+			foodCuisine: foodCuisineE.val(),
+			foodCookDate: foodCookDateE.val(),
+			foodBestBeforeDate: foodBestBeforeDateE.val(),
+			foodIngredients: [],
+			clothGender: clothGenderE.val(),
+			clothSize: clothSizeE.val()
+		};
+
+		console.log(itemData);
+
+
+		var url = "/api/share/";
 		jQuery.ajax({
 			url: url,
 			type: "post",
-			dataType: "json",
-			data: $("#share-form").serialize(),
-			success: responseHandler
+			contentType: "application/json; charset=utf-8",
+    		dataType: "json",
+			data: JSON.stringify(itemData),
+			success: responseHandler,
+			error: responseHandlerError
 		});
 		function responseHandler(response){
+		}
+		function responseHandlerError(response){
+			console.log(response);
 		}
 
 	});

@@ -16,6 +16,7 @@ router.get("/:id", (req, res) => {
 // route for posting share
 router.post("/", (req, res) => {
     let newShare = req.body;
+    console.log(newShare);
 
     if (!newShare) {
         res.status(400).json({ error: "No data provided for share." });
@@ -50,7 +51,7 @@ router.post("/", (req, res) => {
         return;
     }
 
-    
+
     // checking drop address
     if (!newShare.dropStreet || !newShare.dropApt || !newShare.dropCity || !newShare.dropState || !newShare.dropZip) {
         res.status(400).json({ error: "No drop off address is not provided completely." });
@@ -68,13 +69,13 @@ router.post("/", (req, res) => {
             res.status(400).json({ error: "No food cuisine provided." });
             return;
         }
-        
+
         // checking food cook date
         if (!newShare.foodCookDate) {
             res.status(400).json({ error: "No food cook date provided." });
             return;
         }
-        
+
         // checking food best before date
         if (!newShare.foodBestBeforeDate) {
             res.status(400).json({ error: "No food best before date provided." });
@@ -91,13 +92,13 @@ router.post("/", (req, res) => {
         newShare.clothGender = "";
 
     } else if (newShare.itemCategory === "clothes") {
-        
+
         // checking cloth size
         if (!newShare.clothSize) {
             res.status(400).json({ error: "No cloth size provided." });
             return;
         }
-        
+
         // checking cloth gender
         if (!newShare.foodCookDate) {
             res.status(400).json({ error: "No cloth gender provided." });

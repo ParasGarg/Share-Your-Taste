@@ -31,34 +31,68 @@
                         <div class="form-group row">
                           <label for="example-text-input" class="col-2 col-form-label">Title</label>
                           <div class="col-10">
-                            <input class="form-control">
+                            <input id="title" class="form-control">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="example-search-input" class="col-2 col-form-label">Description</label>
                           <div class="col-10">
-                            <input class="form-control">
+                            <input id="description" class="form-control">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="example-email-input" class="col-2 col-form-label">images</label>
                           <div class="col-10">
 							  	<label class="custom-file">
-    				  				<input type="file" id="file" class="custom-file-input">
+    				  				<input type="file" id="images" class="custom-file-input">
     								<span class="custom-file-control"></span>
   								</label>
                           </div>
                         </div>
 						<div class="form-group row">
-                          <label for="example-search-input" class="col-2 col-form-label">Location</label>
+                          	<label for="example-url-input" class="col-2 col-form-label">Drop Location</label>
+						  	<div class="col-10">
+							  	<select id="dropStatus" class="custom-select">
+	  					  			<option selected>Choose...</option>
+	  								<option value="home">Home</option>
+	  								<option value="other">Other</option>
+								</select>
+							</div>
+                        </div>
+						<div class="form-group row">
+                          <label for="example-search-input" class="col-2 col-form-label">Street</label>
                           <div class="col-10">
-                            <input class="form-control">
+                            <input id="dropStreet" class="form-control">
+                          </div>
+                        </div>
+						<div class="form-group row">
+                          <label for="example-search-input" class="col-2 col-form-label">Apt</label>
+                          <div class="col-10">
+                            <input id="dropApt" class="form-control">
+                          </div>
+                        </div>
+						<div class="form-group row">
+                          <label for="example-search-input" class="col-2 col-form-label">City</label>
+                          <div class="col-10">
+                            <input id="dropCity" class="form-control">
+                          </div>
+                        </div>
+						<div class="form-group row">
+                          <label for="example-search-input" class="col-2 col-form-label">State</label>
+                          <div class="col-10">
+                            <input id="dropState" class="form-control">
+                          </div>
+                        </div>
+						<div class="form-group row">
+                          <label for="example-search-input" class="col-2 col-form-label">Zip Code</label>
+                          <div class="col-10">
+                            <input id="dropZip" class="form-control">
                           </div>
                         </div>
                         <div class="form-group row">
                           	<label for="example-url-input" class="col-2 col-form-label">Category</label>
 						  	<div class="col-10">
-							  	<select id="list-category" class="custom-select">
+							  	<select id="itemCategory" class="custom-select lliisstt">
 	  					  			<option selected>Choose...</option>
 	  								<option value="1">Food</option>
 	  								<option value="2">Books</option>
@@ -70,7 +104,7 @@
 							<div class="form-group row">
 	                          	<label for="example-url-input" class="col-2 col-form-label">Cuisine</label>
 							  	<div class="col-10">
-								  	<select class="custom-select">
+								  	<select id="foodCuisine" class="custom-select">
 		  					  			<option selected>Choose...</option>
 		  								<option value="American">American</option>
 		  								<option value="Italian">Italian</option>
@@ -85,13 +119,13 @@
 							<div class="form-group row">
   								<label for="example-date-input" class="col-2 col-form-label">Cook Date</label>
   								<div class="col-10">
-    								<input class="form-control" type="date">
+    								<input id="foodCookDate" class="form-control" type="date">
   								</div>
 							</div>
 							<div class="form-group row">
 	                          	<label for="example-url-input" class="col-2 col-form-label">Best Before</label>
 							  	<div class="col-10">
-								  	<select class="custom-select">
+								  	<select id="foodBestBeforeDate" class="custom-select">
 		  					  			<option selected>Choose...</option>
 		  								<option value="1">1 Day</option>
 		  								<option value="2">2 Days</option>
@@ -106,7 +140,7 @@
 							<div class="form-group row">
 	                          	<label for="example-url-input" class="col-2 col-form-label">Status</label>
 							  	<div class="col-10">
-								  	<select class="custom-select">
+								  	<select id="itemStatus" class="custom-select">
 		  					  			<option selected>Choose...</option>
 		  								<option value="new">New</option>
 		  								<option value="good">Good</option>
@@ -120,7 +154,7 @@
 							<div class="form-group row">
 	                          	<label for="example-url-input" class="col-2 col-form-label">Gender</label>
 							  	<div class="col-10">
-								  	<select class="custom-select">
+								  	<select id="clothGender" class="custom-select">
 		  					  			<option selected>Choose...</option>
 		  								<option value="M">Male</option>
 		  								<option value="F">Female</option>
@@ -131,7 +165,7 @@
 							<div class="form-group row">
 	                          	<label for="example-url-input" class="col-2 col-form-label">Size</label>
 							  	<div class="col-10">
-								  	<select class="custom-select">
+								  	<select id="clothSize" class="custom-select">
 		  					  			<option selected>Choose...</option>
 		  								<option value="xs">XS</option>
 		  								<option value="s">S</option>
@@ -145,7 +179,7 @@
 							<div class="form-group row">
 	                          	<label for="example-url-input" class="col-2 col-form-label">Status</label>
 							  	<div class="col-10">
-								  	<select class="custom-select">
+								  	<select id="itemStatus" class="custom-select">
 		  					  			<option selected>Choose...</option>
 		  								<option value="new">New</option>
 		  								<option value="good">Good</option>

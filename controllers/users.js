@@ -29,7 +29,7 @@ module.exports = usersListControllers = {
                     } else {
                         return true;
                     }
-                    
+
                 }, () => {
                     return Promise.reject(`You are a registered user`);
                 });
@@ -52,14 +52,14 @@ module.exports = usersListControllers = {
                         street: street,
                         apt: apt,
                         city: city,
-                        state: state, 
+                        state: state,
                         zipCode: zip
                     },
                 registerStatus: true,
                 privacyStatus: privacyStatus,
                 rating: 0,
                 rateCount: 0,
-                rateTotal: 0, 
+                rateTotal: 0,
                 regDate: new Date()
             };
 
@@ -133,10 +133,10 @@ module.exports = usersListControllers = {
     disableUser: (id) => {
 
         return usersList().then((usersListCollection) => {
-            
+
             let userChanges = { } ;                             // new empty object
             userChanges['registerStatus'] = false;
-            
+
             return usersListCollection.updateOne({ _id: id }, { $set: userChanges })
                 .then(() => {
                     return usersListControllers.getUserById(id);
@@ -144,6 +144,3 @@ module.exports = usersListControllers = {
         });
     }
 };
-
-
-

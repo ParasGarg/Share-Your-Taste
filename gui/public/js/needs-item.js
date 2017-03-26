@@ -2,6 +2,7 @@ $(document).ready(function() {
 
     const needsTitle = $("#item-title");
     const needsInfo = $("#item-info");
+    const userInfo = $("#user-info");
     const imgsRow = $("#imgs-row");
     const imgsSlide = $("#imgs-slide");
     const imgsIndicators = $("#imgs-indicators");
@@ -16,6 +17,17 @@ $(document).ready(function() {
         type: "get",
         dataType: "json",
         success: responseHandler
+    });
+
+
+    let uId = ["pgarg2@stevens.edu", "pdatta@stevens.edu", "0be9f942-0ca6-4101-bd5f-782643fe6554"]
+    var rand = uId[Math.floor(Math.random() * uId.length)];
+
+    jQuery.ajax({
+        url: "/users/id/"+rand,
+        type: "get",
+        dataType: "json",
+        success: responseHandlerUser
     });
 
     function responseHandler(response){
@@ -49,10 +61,25 @@ $(document).ready(function() {
         }
     }
 
+    function responseHandlerUser(response){
+        console.log(response);
+        addItemUser('name', response.name);
+        addItemUser('Pick-mobile', response.mobile);
+        addItemUser('bio', response.bio);
+        addItemUser('rating', response.rating);
+        addItemUser('regDate', response.regDate);
+    }
+
     function addItem(title, value) {
         let dt = $('<dt>').attr("class","col-lg-3").text(title);
         let dd = $('<dd>').attr("class","col-lg-9").text(value);
         needsInfo.append(dt).append(dd);
+    }
+
+    function addItemUser(title, value) {
+        let dt = $('<dt>').attr("class","col-lg-3").text(title);
+        let dd = $('<dd>').attr("class","col-lg-9").text(value);
+        userInfo.append(dt).append(dd);
     }
 
     function addImg(url, order){

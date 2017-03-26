@@ -1,0 +1,32 @@
+{
+  "name": "share-your-taste",
+  "version": "1.0.0",
+  "description": "A web portal for sharing your taste",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ParasGarg/Duckhacks-Share-Your-Taste.git"
+  },
+  "keywords": [
+    "Social Goods",
+    "Duckhacks 2017",
+    "Hackathon",
+    "Stevens Institute of Technology"
+  ],
+  "author": "Share Your Taste Team",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongo": "^0.1.0",
+    "uuid": "^3.0.1"
+  },
+  "bugs": {
+    "url": "https://github.com/ParasGarg/Duckhacks-Share-Your-Taste/issues"
+  },
+  "homepage": "https://github.com/ParasGarg/Duckhacks-Share-Your-Taste#readme"
+}

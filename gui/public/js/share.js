@@ -87,6 +87,7 @@ $(document).ready(function() {
 			error: responseHandlerError
 		});
 		function responseHandler(response){
+			window.location = "http://localhost:3000/needs/";
 		}
 		function responseHandlerError(response){
 			console.log(response);
